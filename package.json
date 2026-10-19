@@ -1,0 +1,41 @@
+{
+  "name": "@ssgk4422/visual-smoke",
+  "version": "1.0.0",
+  "description": "⚡ Zero-Code Automated Localhost Visual Smoke Testing & DOM Invariant Regression Guard",
+  "main": "dist/src/index.js",
+  "type": "module",
+  "bin": {
+    "visual-smoke": "bin/visual-smoke.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "tsc",
+    "start": "node bin/visual-smoke.js --demo",
+    "dev": "tsc -w",
+    "test": "node --test dist/tests/scanner.test.js dist/tests/differ.test.js dist/tests/server.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SECRET4422/visual-smoke.git"
+  },
+  "keywords": [
+    "visual-testing",
+    "smoke-testing",
+    "regression-testing",
+    "localhost",
+    "developer-tools",
+    "dom-invariants",
+    "zero-config",
+    "ci-cd",
+    "frontend-qa"
+  ],
+  "author": "Prabhakar Pal <vikashpal7888@gmail.com> (https://alphatech.studio)",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}

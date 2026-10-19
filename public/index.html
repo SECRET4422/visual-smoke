@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VisualSmoke ⚡ Localhost Visual Regression Guard</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="smoke-body">
+
+  <!-- Top Navigation Header -->
+  <header class="top-nav">
+    <div class="nav-brand">
+      <span class="brand-bolt">⚡</span>
+      <div>
+        <div class="brand-title">VisualSmoke</div>
+        <div class="brand-sub">Localhost Visual Regression Guard</div>
+      </div>
+    </div>
+
+    <!-- Quick Target Selectors -->
+    <div class="quick-targets">
+      <span class="quick-label">Quick Scan:</span>
+      <button class="target-chip active" data-url="http://localhost:4040/demo/clean">
+        <i class="fa-solid fa-circle-check text-emerald"></i> Clean Fleet
+      </button>
+      <button class="target-chip" data-url="http://localhost:4040/demo/degraded">
+        <i class="fa-solid fa-triangle-exclamation text-amber"></i> Degraded Staging
+      </button>
+      <button class="target-chip" data-url="http://localhost:4040/demo/clean,http://localhost:4040/demo/degraded">
+        <i class="fa-solid fa-network-wired text-cyan"></i> Multi-Cluster
+      </button>
+    </div>
+
+    <!-- Right Controls -->
+    <div class="nav-actions">
+      <button id="btnSetBaseline" class="btn-secondary">
+        <i class="fa-solid fa-bookmark"></i> Set Baseline
+      </button>
+      <button id="btnRunScan" class="btn-primary">
+        <i class="fa-solid fa-play"></i> Run Smoke Test
+      </button>
+    </div>
+  </header>
+
+  <!-- URL Scanner Bar -->
+  <div class="scanner-bar">
+    <div class="url-input-container">
+      <i class="fa-solid fa-magnifying-glass search-icon"></i>
+      <input type="text" id="targetUrlInput" value="http://localhost:4040/demo/clean" placeholder="Enter localhost target URL(s) comma separated (e.g. http://localhost:3000)">
+    </div>
+  </div>
+
+  <!-- Main Dashboard Grid -->
+  <main class="dashboard-container">
+    
+    <!-- Top KPI Grid -->
+    <section class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Verdict Status</div>
+        <div class="kpi-value text-emerald" id="kpiVerdict">PASS</div>
+        <div class="kpi-sub" id="kpiVerdictDesc">All invariants satisfied</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Tested Endpoints</div>
+        <div class="kpi-value" id="kpiEndpoints">1 / 1</div>
+        <div class="kpi-sub">0 failed connections</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Avg P99 Latency</div>
+        <div class="kpi-value" id="kpiLatency">14ms</div>
+        <div class="kpi-sub text-emerald">Optimal (&lt;50ms)</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">DOM Drift Ratio</div>
+        <div class="kpi-value" id="kpiDrift">0.0%</div>
+        <div class="kpi-sub">1:1 structural hash match</div>
+      </div>
+    </section>
+
+    <!-- Inspection Results Split View -->
+    <section class="results-layout">
+      
+      <!-- Left: Invariant Violations & Endpoint Ledger -->
+      <div class="results-panel">
+        <div class="panel-header">
+          <div class="panel-title">
+            <i class="fa-solid fa-shield-halved"></i> DOM & Visual Invariant Telemetry
+          </div>
+          <span class="count-badge" id="violationCountBadge">0 Violations</span>
+        </div>
+
+        <div class="inspections-list" id="inspectionsList">
+          <!-- Dynamically populated endpoint inspection cards -->
+        </div>
+      </div>
+
+      <!-- Right: Live Inspection Sandbox & Viewport Frame -->
+      <div class="preview-panel">
+        <div class="panel-header">
+          <div class="panel-title">
+            <i class="fa-solid fa-display"></i> Live Endpoint Render Preview
+          </div>
+          <div class="preview-controls">
+            <button class="pv-btn active" id="btnPreviewDesktop" title="Desktop View"><i class="fa-solid fa-desktop"></i></button>
+            <button class="pv-btn" id="btnPreviewMobile" title="Mobile View"><i class="fa-solid fa-mobile-screen"></i></button>
+          </div>
+        </div>
+
+        <div class="preview-viewport-wrapper">
+          <iframe id="previewIframe" class="preview-frame" src="/demo/clean"></iframe>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="toast-notification"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
