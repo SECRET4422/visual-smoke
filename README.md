@@ -5,6 +5,12 @@
 ### Zero-Code Localhost Visual Smoke Testing & DOM Invariant Regression Guard
 **Catch broken layouts, White Screens of Death (WSOD), latency spikes, and structural DOM drift before committing.**
 
+<br />
+
+<img src="assets/banner.jpg" width="100%" alt="VisualSmoke Localhost Regression and DOM Invariant Guard" />
+
+<br />
+
 [![CI](https://github.com/SECRET4422/visual-smoke/actions/workflows/ci.yml/badge.svg)](https://github.com/SECRET4422/visual-smoke/actions)
 [![npm version](https://img.shields.io/badge/npm-v1.0.0-blue.svg)](https://npmjs.com/package/@ssgk4422/visual-smoke)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -42,14 +48,14 @@ When running local dev servers (`localhost:3000`, `localhost:5173`, etc.) while 
 │   ┌───────────────────────────┐      ┌───────────────────────────┐     │
 │   │ Localhost Scan Ingestion  │      │ Live Render Viewport      │     │
 │   │ (:3000, :5173, :8080)     │      │ (Desktop / Mobile Frames) │     │
-│   └─────────────┬─────────────┘      └─────────────▲─────────────┘     │
-│                 │                                  │                   │
-│                 ▼                                  │                   │
-│   ┌───────────────────────────┐                    │                   │
-│   │ DOM Invariant Validator   ├────────────────────┘                   │
+│   └────────────┬──────────────┘      └───────────▲───────────────┘     │
+│                │                                 │                   │
+│                ▼                                 │                   │
+│   ┌───────────────────────────┐                  │                   │
+│   │ DOM Invariant Validator   ├──────────────────┘                   │
 │   │ (WSOD, Meta, Layout Hash) │      Interactive Inspection HUD        │
-│   └─────────────┬─────────────┘                                        │
-│                 ▼                                                      │
+│   └────────────┬──────────────┘                                        │
+│                ▼                                                       │
 │   ┌────────────────────────────────────────────────────────────────┐   │
 │   │ Regression Diff: Element Deltas | Baseline Drift | Pass/Fail   │   │
 │   └────────────────────────────────────────────────────────────────┘   │
